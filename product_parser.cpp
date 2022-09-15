@@ -131,6 +131,11 @@ std::string ProductBookParser::categoryID()
 Product* ProductBookParser::makeProduct()
 {
 
+	Book* b;
+	
+	b = new Book(categoryID(), prodName_, price_, qty_, isbn_, author_);
+
+	return b;
 
 }
 

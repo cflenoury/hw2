@@ -15,16 +15,39 @@ std::string convToLower(std::string src)
     to a set of words based on the criteria given in the assignment **/
 std::set<std::string> parseStringToWords(string rawWords)
 {
+		//set the words to be all lower case
+		std::string lowerWords = convToLower(rawWords);
 
+		//Create a set of type string to return
+    std::set<std::string> parsedWords;
 
+		//Create a temp string to look at parsed strings
+		std::string temp;
 
+		//Past version of 'i'
+		unsigned int pindx = 0;
 
+		//Traverse the entire string, looking at each char
+		for(unsigned int i = 0; i < lowerWords.length(); i++){
 
+			//If the char is not lowercase letter
+			if(lowerWords[i] < 96 && lowerWords[i] > 123 ){
+			//if(isalpha(lowerWords[i])){
 
+				//Create a subtring from the last pindx to char before the current index
+				temp = lowerWords.substr(pindx, i - pindx);
 
+				//Make pindx be the char after the current one
+				pindx = i + 1;
 
+				//If the size of the sub string is sufficient, add it to the return set
+				if(temp.size() > 2 ){
+					parsedWords.insert(temp);
+				}
+			}
+		}
 
-
+    return parsedWords;
 }
 
 /**************************************************
