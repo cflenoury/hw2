@@ -3,7 +3,7 @@
 #include "util.h"
 #include "product.h"
 
-class Movie : protected Product{
+class Movie : public Product{
 	public:
 		Movie(const std::string category, const std::string name, double price, int qty, std::string isbn, std::string author);
 		

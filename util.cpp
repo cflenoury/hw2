@@ -31,11 +31,22 @@ std::set<std::string> parseStringToWords(string rawWords)
 		for(unsigned int i = 0; i < lowerWords.length(); i++){
 
 			//If the char is not lowercase letter
-			if(lowerWords[i] < 96 && lowerWords[i] > 123 ){
+			if(lowerWords[i] < 96 || lowerWords[i] > 123){
 			//if(isalpha(lowerWords[i])){
 
 				//Create a subtring from the last pindx to char before the current index
 				temp = lowerWords.substr(pindx, i - pindx);
+
+				//Make pindx be the char after the current one
+				pindx = i + 1;
+
+				//If the size of the sub string is sufficient, add it to the return set
+				if(temp.size() > 2 ){
+					parsedWords.insert(temp);
+				}
+			} else if(i == lowerWords.length() -1 ){//Edge case: there is a letter @ the end of the string
+				//Create a subtring from the last pindx to char before the current index
+				temp = lowerWords.substr(pindx, lowerWords.length() - pindx);
 
 				//Make pindx be the char after the current one
 				pindx = i + 1;

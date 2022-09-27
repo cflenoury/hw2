@@ -52,7 +52,7 @@ string Book::displayString() const{//Display product info? (title, author, ISBN,
 	//Create a string stream
 	stringstream ss;
 
-	ss << name_ << "\n Author: " << author_ << " ISBN: " << isbn_ << endl <<
+	ss << name_ << "\nAuthor: " << author_ << " ISBN: " << isbn_ << endl <<
 	price_ << " " << qty_ << " left.\n";
 
 	//Return the sstream as a string

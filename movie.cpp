@@ -26,7 +26,7 @@ set<string> Movie::keywords() const{
 	//Use the string parser to find all words in the title of the book and the author(s)
 	set<string> fin;
 
-	fin.insert(genre_);//Add isbn to set of keywords
+	fin.insert(genre_);//Add genre to set of keywords
 
 	set<string>::iterator it;//Create an iterator to traverse one of the sets
 	
@@ -45,7 +45,7 @@ string Movie::displayString() const{//Display product info? (title, author, ISBN
 	//Create a string stream
 	stringstream ss;
 
-	ss << name_ << "\n Genre: " << genre_ << " Rating: " << rating_ << endl <<
+	ss << name_ << "\nGenre: " << genre_ << " Rating: " << rating_ << endl <<
 	price_ << " " << qty_ << " left.\n";
 
 	//Return the sstream as a string

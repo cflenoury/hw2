@@ -1,5 +1,5 @@
 #include "user.h"
-using namespace std;
+//using namespace std;
 
 User::User() : name_("unknown"), balance_(0.0), type_(1)
 {
@@ -34,5 +34,5 @@ void User::deductAmount(double amt)
 
 void User::dump(std::ostream& os)
 {
-    os << name_ << " "  << balance_ << " " << type_ << endl;
+    os << name_ << " "  << balance_ << " " << type_ << '\n';
 }

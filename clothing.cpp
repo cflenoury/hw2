@@ -25,8 +25,6 @@ Clothing::Clothing( const string category,
 set<string> Clothing::keywords() const{
 	//Use the string parser to find all words in the title of the book and the author(s)
 	set<string> fin;
-
-	fin.insert(brand_);//Add brand to set of keywords
 	
 	set<string> temp = parseStringToWords(brand_);
 
@@ -52,7 +50,7 @@ string Clothing::displayString() const{//Display product info? (title, author, I
 	//Create a string stream
 	stringstream ss;
 
-	ss << name_ << "\n Size: " << size_ << " Brand: " << brand_ << endl <<
+	ss << name_ << "\nSize: " << size_ << " Brand: " << brand_ << endl <<
 	price_ << " " << qty_ << " left.\n";
 
 	//Return the sstream as a string

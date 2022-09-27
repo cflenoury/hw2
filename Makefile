@@ -3,12 +3,15 @@ CXXFLAGS=-g -Wall -std=c++11
 # Uncomment for parser DEBUG
 #DEFS=-DDEBUG
 
-OBJS=amazon.o user.o db_parser.o product.o product_parser.o util.o
+OBJS=amazon.o user.o db_parser.o product.o product_parser.o util.o mydatastore.o book.o clothing.o movie.o
 
 all: amazon
 
 amazon: $(OBJS)
 	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ $(OBJS)
+
+#test: user.o db_parser.o product.o product_parser.o util.o testing.o
+#	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ $^
 
 amazon.o: amazon.cpp db_parser.h datastore.h product_parser.h 
 	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c amazon.cpp
@@ -18,11 +21,20 @@ db_parser.o: db_parser.cpp db_parser.h product.h product_parser.h user.h datasto
 	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c db_parser.cpp
 product.o: product.cpp product.h 
 	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c product.cpp
-product_parser.o: product_parser.cpp product_parser.h product.h 
+product_parser.o: product_parser.cpp product_parser.h product.h util.h clothing.h book.h movie.h
 	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c product_parser.cpp
 util.o: util.cpp util.h
 	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c util.cpp
-
+mydatastore.o: mydatastore.cpp mydatastore.h
+	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c mydatastore.cpp
+book.o: book.cpp book.h product.h
+	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c book.cpp
+clothing.o: clothing.cpp clothing.h product.h
+	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c clothing.cpp
+movie.o: movie.cpp movie.h product.h
+	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c movie.cpp
+#testing.o: testing.cpp
+#	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c testing.cpp
 
 clean:
 	rm -f *.o amazon
