@@ -50,7 +50,7 @@ string Clothing::displayString() const{//Display product info? (title, author, I
 	//Create a string stream
 	stringstream ss;
 
-	ss << name_ << "\nSize: " << size_ << " Brand: " << brand_ << endl <<
+	ss << name_ << "\nSize: " << size_ << " Brand: " << brand_ << endl << fixed << setprecision(2) <<
 	price_ << " " << qty_ << " left.\n";
 
 	//Return the sstream as a string

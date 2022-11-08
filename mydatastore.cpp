@@ -12,16 +12,34 @@ MyDataStore::MyDataStore(){
 
 }
 
+MyDataStore::~MyDataStore(){
+
+	std::set<Product*>::iterator sit;
+	for(sit = products.begin(); sit != products.end(); ++sit ){
+		delete *sit;
+		//*sit = nullptr;
+	}
+
+	products.clear();
+
+	// for(std::map< std::string, std::pair<User, std::vector<Product*>> >::iterator mit = users.begin(); mit != users.end(); ++mit){
+	// 	//Access the vallue of the map ( a pair ). Access the first item of the pair (the User), use the dump members
+	// 	delete mit->second.first;//Delete the users
+	// }
+
+	users.clear();
+
+
+}
+
 void MyDataStore::addProduct(Product* p){
 	products.insert(p);//insert the product pointer into the products set
 }
 
 void MyDataStore::addUser(User* u){
 	std::vector<Product*> tV;//Create an empty cart for the user
-	//pair<User, std::vector<Product*>> tp(*u, tV);
-	//string tS = u->getName();
-	//std::string userName = u->getName();
 	users.insert(make_pair(u->getName(), make_pair(*u, tV)));//insert the user value to the user set
+	delete u;
 }
 
 std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int type){
@@ -79,16 +97,21 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 void MyDataStore::dump(std::ostream& ofile){
 	//Print ALL products then ALL users
 
+	ofile << "<products>\n";
+
 	//Go through all products and use dump() method
 	for(set<Product*>::iterator sit = products.begin(); sit != products.end(); ++sit){
 		(*sit)->dump(ofile);
 	}
+	ofile << "</products>\n";
 
+	ofile << "<users>\n";
 	//Go through all users and use dump() method
 	for(std::map< std::string, std::pair<User, std::vector<Product*>> >::iterator mit = users.begin(); mit != users.end(); ++mit){
 		//Access the vallue of the map ( a pair ). Access the first item of the pair (the User), use the dump members
 		mit->second.first.dump(ofile);
 	}
+	ofile << "</users>\n";
 }
 
 //buy cart functions

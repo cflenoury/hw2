@@ -12,6 +12,7 @@
 class MyDataStore : public DataStore {
 	public:
 		MyDataStore();//Constructor
+		~MyDataStore();//Destructor
 		void addProduct(Product* p);
 		void addUser(User* u);
 		std::vector<Product*> search(std::vector<std::string>& terms, int type);
@@ -21,7 +22,7 @@ class MyDataStore : public DataStore {
 		void printCart(std::string username);
 		void buyCart(std::string username);
 
-	//private: Comment out for debug purposes
+	private:
 		//Member variables
 		std::set<Product*> products;//A set to store all the products
 

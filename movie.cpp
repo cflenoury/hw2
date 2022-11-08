@@ -45,7 +45,7 @@ string Movie::displayString() const{//Display product info? (title, author, ISBN
 	//Create a string stream
 	stringstream ss;
 
-	ss << name_ << "\nGenre: " << genre_ << " Rating: " << rating_ << endl <<
+	ss << name_ << "\nGenre: " << genre_ << " Rating: " << rating_ << endl << fixed << setprecision(2) <<
 	price_ << " " << qty_ << " left.\n";
 
 	//Return the sstream as a string

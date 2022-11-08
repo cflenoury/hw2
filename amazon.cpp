@@ -24,18 +24,6 @@ void displayProducts(vector<Product*>& hits);
 int main(int argc, char* argv[])
 {
 
-	//Testing
-
-	//1. Finding key words
-	
-	// set<string> test1 = parseStringToWords("Crew Men's Fitted Shirt");
-
-	// for(set<string>::iterator sit = test1.begin(); sit != test1.end(); ++sit){
-	// 	cout << *sit << endl;
-	// }	
-
-	//2. mydatastore (saving users, saving products)
-
 	if(argc < 2) {
 			cerr << "Please specify a database file" << endl;
 			return 1;
@@ -65,35 +53,6 @@ int main(int argc, char* argv[])
 			cerr << "Error parsing!" << endl;
 			return 1;
 	}
-
-	// if(ds.containsUser("adal")){
-	// 	cout << "adal is in the database\n";
-	// }
-
-	//ds.dump(cout);
-
-	// Checking products
-	// for(std::set<Product*>::iterator sit = ds.products.begin(); sit != ds.products.end(); ++sit){
-	// 	cout << (*sit)->getName() << ": ";//Print product name
-  //   std::set<std::string> kw = (*sit)->keywords();//Create keywords set
-	// 	for(set<string>::iterator sit1 = kw.begin(); sit1 != kw.end(); ++sit1){//Print keywords set
-	// 	cout << *sit1 << endl;
-	// 	}	
-		
-	// }
-
-	//Testing search: AND & OR
-	// std::vector<std::string> tV = {"men","and"};
-	// std::vector<Product*> fHit = ds.search( tV,1 );
-	// displayProducts(fHit);
-	// cout << "Hits: ";
-	// for(std::vector<Product*>::iterator vit = fHit.begin(); vit != fHit.end(); ++vit){
-
-	// 	(*vit)->dump(cout);
-
-	// }
-
-	//cout << "How many hits?: " << fHit.size();
 
 
     cout << "=====================================" << endl;
@@ -150,9 +109,9 @@ int main(int argc, char* argv[])
 							int hit_result_index;
 							ss >> username >> hit_result_index;
 							username = convToLower(username);
-							if( !ds.containsUser(username) || hit_result_index < 0){
-								cerr << "Invalid requeset\n";
-								return 1;
+							if( !ds.containsUser(username) || hit_result_index < 1 || hit_result_index > hits.size() ){
+								cout << "Invalid request\n";
+								continue;
 							}
 							ds.addToCart(username, hits[hit_result_index - 1]);							
 						}else if( cmd == "VIEWCART"){
@@ -160,8 +119,8 @@ int main(int argc, char* argv[])
 							ss >> username;
 							username = convToLower(username);
 							if( !ds.containsUser(username)){
-								cerr << "Invalid requeset\n";
-								return 1;
+								cout << "Invalid username\n";
+								continue;
 							}
 							ds.printCart(username);							
 						}else if( cmd == "BUYCART"){
@@ -169,8 +128,8 @@ int main(int argc, char* argv[])
 							ss >> username;
 							username = convToLower(username);
 							if( !ds.containsUser(username)){
-								cerr << "Invalid requeset\n";
-								return 1;
+								cout << "Invalid username\n";
+								continue;
 							}
 							ds.buyCart(username);							
 						}
@@ -194,7 +153,7 @@ void displayProducts(vector<Product*>& hits)
     for(vector<Product*>::iterator it = hits.begin(); it != hits.end(); ++it) {
         cout << "Hit " << setw(3) << resultNo << endl;
         cout << (*it)->displayString() << endl;
-        cout << endl;
+        //cout << endl;
         resultNo++;
     }
 }
