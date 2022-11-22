@@ -26,11 +26,11 @@ set<string> Movie::keywords() const{
 	//Use the string parser to find all words in the title of the book and the author(s)
 	set<string> fin;
 
-	fin.insert(genre_);//Add genre to set of keywords
+	string input = genre_ + " " + name_;
 
 	set<string>::iterator it;//Create an iterator to traverse one of the sets
 	
-	set<string> temp = parseStringToWords(name_);//Parse the words in the name of the book
+	set<string> temp = parseStringToWords(input);//Parse the words in the name of the book
 	
 	for(it = temp.begin(); it != temp.end(); ++it){//Add key words to final set
 		fin.insert(*it);

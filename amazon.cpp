@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
 	    /* Add support for other commands here */
 						else if( cmd == "ADD"){
 							string username;
-							int hit_result_index;
+							unsigned int hit_result_index;
 							ss >> username >> hit_result_index;
 							username = convToLower(username);
 							if( !ds.containsUser(username) || hit_result_index < 1 || hit_result_index > hits.size() ){

@@ -22,13 +22,7 @@ MyDataStore::~MyDataStore(){
 
 	products.clear();
 
-	// for(std::map< std::string, std::pair<User, std::vector<Product*>> >::iterator mit = users.begin(); mit != users.end(); ++mit){
-	// 	//Access the vallue of the map ( a pair ). Access the first item of the pair (the User), use the dump members
-	// 	delete mit->second.first;//Delete the users
-	// }
-
 	users.clear();
-
 
 }
 
@@ -126,13 +120,6 @@ bool MyDataStore::containsUser(std::string username){//Is a user in the database
 }
 
 void MyDataStore::addToCart(std::string username, Product* p){
-	//Add product to <username>'s cart
-
-	//cart must be managed fifo & products can't be removed by user
-
-	//push back, pop front (FIFO)
-	//on std::vector of prodcucts (cart) associated with User's key in map
-	//(thier username)
 
 	//Access the value at the username key and add to the front of that std::vector
 	//Access the pair at the username. Add to the 2nd item of the pair (the cart std::vector). Add to the end of that std::vector
@@ -149,7 +136,7 @@ void MyDataStore::printCart(std::string username){
 	int i = 1;
 
 	for(std::vector<Product *>::iterator it = users[username].second.begin(); it != users[username].second.end(); ++it){
-		std::cout << i << ": " << (*it)->getName() << std::endl;
+		std::cout << "Item " << i << std::endl << (*it)->displayString() << std::endl;
 		i++;
 	}
 }

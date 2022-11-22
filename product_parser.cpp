@@ -137,7 +137,7 @@ Product* ProductBookParser::makeProduct()
 	b = new Book(categoryID(), prodName_, price_, qty_, isbn_, author_);
 
     Product* p = b;
-	return b;
+	return p;
 
 }
 
